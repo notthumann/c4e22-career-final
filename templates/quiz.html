@@ -43,7 +43,7 @@
             </p>
         </div>   
     </div>
-    <div id="content">
+    <form id="content" method="POST">
         {% for question in question_list %}
             {% set outer_loop = loop %}
             {% if loop.index == 1 %}
@@ -67,8 +67,9 @@
 
         </div>
         {% endfor %}
-    </div>
-    <a href="/result">bam cai nay</a>
+        <input type="text" name="point" id="point" style="display:none">
+        <input type="submit" style="display:none">
+    </form>
     <div id = "footer">
         <p> Tầng 6, nhà C, tòa nhà Chigamex - 22 Thành Công, Ba Đình, Hà Nội -- c4e22career@gmail.com</p>
     </div>
