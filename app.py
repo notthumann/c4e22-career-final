@@ -2,6 +2,7 @@ from flask import *
 import mlab
 from jobs import Jobs,Job_sector
 from quiz import *
+from poll import Poll
 
 app = Flask(__name__)
 mlab.connect()
@@ -99,6 +100,17 @@ def topic8():
 @app.route("/topic9")
 def topic9():
   return render_template("topic9.html")
+
+@app.route("/story",methods=["GET","POST"])
+def gmail():
+    if request.method=="GET":
+        return render_template("email.html")
+    elif request.method=="POST":
+        form =request.form
+        something = form["something"]
+        p =  Poll(something=something)
+        p.save()
+        return render_template("email.html")
 
 
 
