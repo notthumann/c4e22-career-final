@@ -12,9 +12,8 @@ const answerClick = () => {
                 $(`#${questionID + 1}`).css('display','flex');
                 console.log(totalPoint);
                 if (questionID == 10) {
-                    $.post( "/quiz", {
-                        javascript_data: totalPoint 
-                    }); 
+                    $('#point').val(totalPoint);
+                    $('#content').submit();
                 }
             });
         }
