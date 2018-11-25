@@ -37,44 +37,20 @@ def quiz():
     question_list = Question.objects()
     person_list = PersonType.objects()
     name = person_list[0].name
+    des = person_list[0].des
+    suited = person_list[0].suited
    
     if request.method == "GET":
-    # print(question_list)
-    # for i in range (10):
-    #     question1 = question_list[i]
-    #     link1 = question1.question[0].link
-    #     link2 = question1.question[1].link
-    #     return render_template("quiz.html",l1 = link1,l2 = link2)
-    # print(question1[0])
       return render_template("quiz.html", question_list = question_list)
     elif request.method == "POST":
-      p = request.form['javascript_data']
-      print(p)
-      return redirect('/result')
+      p = request.form['point']
       if 0 <= int(p) <= person_list[0].total_points:
-        print(person_list[0].name)
-        print(person_list[0].des)
-        print(person_list[0].suited)
-        print("abc")
-        return "abc"
-        # return render_template("result.html",name = person_list[0].name, des = person_list[0].des, suited = person_list[0].suited )
-        # return redirect(url_for('result', name = person_list[0].name, des = person_list[0].des, suited = person_list[0].suited))
+        return render_template("result.html",name = name, des = des, suited = suited )
       else:
         for i in range (5):
           if person_list[i].total_points < int(p) <= person_list[i+1].total_points:
-            print(person_list[i+1].name)
-            print(person_list[i+1].des)
-            print(person_list[i+1].suited)
-            print("ABC")
-            return "ABC"
-            # return render_template("result.html",name = person_list[i+1].name, des = person_list[i+1].des, suited = person_list[i+1].suited)
-            # return redirect(url_for('result', name = person_list[0].name, des = person_list[0].des, suited = person_list[0].suited))
-
-
-@app.route('/result')
-def result():
-    print("hello")
-    return "abc"  
+            # return "ABC"
+            return render_template("result.html",name = person_list[i+1].name, des = person_list[i+1].des, suited = person_list[i+1].suited)
 
 @app.route("/")
 def home():
